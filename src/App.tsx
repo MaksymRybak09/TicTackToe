@@ -72,7 +72,7 @@ function App() {
       currentPlayer: "X",
       winner: null,
       moveCount: 0,
-      gridSize: prev.gridSize,
+      gridSize: prev.selectedGridSize,
     }));
   };
 
