@@ -28,7 +28,7 @@ function App() {
     newBoard[row][col] = game.currentPlayer;
 
     const newMoveCount = game.moveCount++;
-    const result = checkWinner(game.board, game.currentPlayer, game.gridSize);
+    const result = checkWinner(newBoard, game.currentPlayer, game.gridSize);
 
     if (result) {
       setTimeout(() => setIsModalShown(true), 1000);
