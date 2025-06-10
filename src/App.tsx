@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import GameBoard from "./components/GameBoard/GameBoard";
 import GameControlls from "./components/GameControlls/GameControlls";
@@ -22,12 +22,18 @@ function App() {
   });
   const [isModalShown, setIsModalShown] = useState(false);
 
+  useEffect(() => {
+    if (game.winner === "draw") {
+      setTimeout(() => setIsModalShown(true), 1000);
+    }
+  }, [game.winner]);
+
   const handleCellClick = (row: number, col: number) => {
     if (game.winner || game.board[row][col]) return;
     const newBoard = game.board.map((row) => [...row]);
     newBoard[row][col] = game.currentPlayer;
 
-    const newMoveCount = game.moveCount++;
+    const newMoveCount = game.moveCount + 1;
     const result = checkWinner(newBoard, game.currentPlayer, game.gridSize);
 
     if (result) {
