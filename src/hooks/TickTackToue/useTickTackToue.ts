@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { checkWinner } from "../../lib/helpers/chackWinner";
 import type { GameState } from "../../types/gameState";
 
@@ -14,14 +14,32 @@ export const useTickTackToue = () => {
     moveCount: 0,
     gridSize: 3,
     selectedGridSize: 3,
+    time: { X: 0, O: 0 },
   });
   const [isModalShown, setIsModalShown] = useState(false);
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (game.winner === "draw") {
       setTimeout(() => setIsModalShown(true), 1000);
     }
   }, [game.winner]);
+
+  useEffect(() => {
+    if (!game.winner) {
+      startTimeRef.current = Date.now();
+    } else if (startTimeRef.current !== null) {
+      const elapsed = Date.now() - startTimeRef.current;
+      setGame((prev) => ({
+        ...prev,
+        time: {
+          ...prev.time,
+          [prev.currentPlayer]: prev.time[prev.currentPlayer] + elapsed,
+        },
+      }));
+      startTimeRef.current = null;
+    }
+  }, [game.currentPlayer, game.winner]);
 
   const handleCellClick = (row: number, col: number) => {
     if (game.winner || game.board[row][col]) return;
@@ -30,6 +48,10 @@ export const useTickTackToue = () => {
 
     const newMoveCount = game.moveCount + 1;
     const result = checkWinner(newBoard, game.currentPlayer, game.gridSize);
+
+    const elapsed = startTimeRef.current
+      ? Date.now() - startTimeRef.current
+      : 0;
 
     if (result) {
       setTimeout(() => setIsModalShown(true), 1000);
@@ -55,6 +77,10 @@ export const useTickTackToue = () => {
         result || newMoveCount === game.gridSize ** 2
           ? prev.gameCount + 1
           : prev.gameCount,
+      time: {
+        ...prev.time,
+        [prev.currentPlayer]: prev.time[prev.currentPlayer] + elapsed,
+      },
     }));
   };
 
@@ -68,6 +94,7 @@ export const useTickTackToue = () => {
       winner: null,
       moveCount: 0,
       gridSize: prev.selectedGridSize,
+      time: { X: 0, O: 0 },
     }));
   };
 
