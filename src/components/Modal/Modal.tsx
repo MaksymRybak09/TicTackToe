@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { formatTime } from "../../lib/helpers/formatTime";
 import type { Player } from "../../types/player";
 import type { Time } from "../../types/time";
+import MyButton from "../MyButton/MyButton";
 import styles from "./modal.module.css";
 
 type ModalProps = {
@@ -43,7 +44,7 @@ function Modal(props: ModalProps) {
     <div className={styles.fade}>
       <div id="modal" className={styles.modal}>
         <p>{message}</p>
-        <button onClick={props.onClose}>OK</button>
+        <MyButton onClick={props.onClose}>OK</MyButton>
       </div>
     </div>
   );

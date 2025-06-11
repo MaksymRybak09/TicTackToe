@@ -1,3 +1,5 @@
+import MyButton from "../MyButton/MyButton";
+
 type GameBoardProps = {
   onNewGame: () => void;
   selectedGridSize: number;
@@ -7,7 +9,7 @@ type GameBoardProps = {
 function GameControlls(props: GameBoardProps) {
   return (
     <div>
-      <button onClick={props.onNewGame}>New game</button>
+      <MyButton onClick={props.onNewGame}>New game</MyButton>
       <label>
         Grid size:
         <select
