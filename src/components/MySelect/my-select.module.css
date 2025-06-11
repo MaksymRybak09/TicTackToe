@@ -1,0 +1,9 @@
+.select {
+  padding: 8px 10px;
+  background: none;
+  border: 1px solid #485651;
+}
+
+.select:hover {
+  background: #edf5d7;
+}
