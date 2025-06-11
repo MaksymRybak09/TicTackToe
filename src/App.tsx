@@ -22,7 +22,7 @@ function App() {
   } = useTickTackToue();
 
   return (
-    <>
+    <div className="app">
       <PlayerInfo
         wins={wins}
         gameCount={gameCount}
@@ -30,19 +30,21 @@ function App() {
         winner={winner}
         time={time}
       />
-      <GameBoard board={board} onCeLLClick={handleCellClick} />
-      <GameControlls
-        onNewGame={startNewGame}
-        selectedGridSize={selectedGridSize}
-        onGridSizeChange={onGridSizeChange}
-      />
+      <div className="game-board">
+        <GameBoard board={board} onCeLLClick={handleCellClick} />
+        <GameControlls
+          onNewGame={startNewGame}
+          selectedGridSize={selectedGridSize}
+          onGridSizeChange={onGridSizeChange}
+        />
+      </div>
       <Modal
         show={isModalShown}
         winner={winner}
         onClose={onModalClose}
         time={time}
       />
-    </>
+    </div>
   );
 }
 
