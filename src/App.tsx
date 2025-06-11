@@ -12,6 +12,7 @@ function App() {
     gameCount,
     currentPlayer,
     board,
+    time,
     selectedGridSize,
     isModalShown,
     handleCellClick,
@@ -26,6 +27,8 @@ function App() {
         wins={wins}
         gameCount={gameCount}
         currentPlayer={currentPlayer}
+        winner={winner}
+        time={time}
       />
       <GameBoard board={board} onCeLLClick={handleCellClick} />
       <GameControlls
@@ -33,7 +36,12 @@ function App() {
         selectedGridSize={selectedGridSize}
         onGridSizeChange={onGridSizeChange}
       />
-      <Modal show={isModalShown} winner={winner} onClose={onModalClose} />
+      <Modal
+        show={isModalShown}
+        winner={winner}
+        onClose={onModalClose}
+        time={time}
+      />
     </>
   );
 }
