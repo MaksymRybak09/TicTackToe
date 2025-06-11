@@ -3,6 +3,7 @@ import { formatTime } from "../../lib/helpers/formatTime";
 import type { Player } from "../../types/player";
 import type { Time } from "../../types/time";
 import type { Wins } from "../../types/wins";
+import styles from "./player-info.module.css";
 
 type PlayerInfoProps = {
   wins: Wins;
@@ -37,17 +38,25 @@ function PlayerInfo(props: PlayerInfoProps) {
   }, [props.currentPlayer, props.time, props.winner]);
 
   return (
-    <div>
-      <h1>Wins</h1>
-      <p>Player X: {props.wins.X}</p>
-      <p>Player O: {props.wins.O}</p>
-      <h1>Time</h1>
-      <p>Player X: {formatTime(displayedTime.X)}</p>
-      <p>Player O: {formatTime(displayedTime.O)}</p>
-      <h1>Total games</h1>
-      <p>You have played {props.gameCount} games</p>
-      <h1>Current player</h1>
-      <p>Player {props.currentPlayer} makes his move</p>
+    <div className={styles.info}>
+      <section>
+        <h1>Wins</h1>
+        <p>Player X: {props.wins.X}</p>
+        <p>Player O: {props.wins.O}</p>
+      </section>
+      <section>
+        <h1>Time</h1>
+        <p>Player X: {formatTime(displayedTime.X)}</p>
+        <p>Player O: {formatTime(displayedTime.O)}</p>
+      </section>
+      <section>
+        <h1>Total games</h1>
+        <p>You have played {props.gameCount} games</p>
+      </section>
+      <section>
+        <h1>Current player</h1>
+        <p>Player {props.currentPlayer} makes his move</p>
+      </section>
     </div>
   );
 }
