@@ -24,7 +24,7 @@ function Modal(props: ModalProps) {
       }
     };
     return () => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [props.show, props.onClose, props]);
 
