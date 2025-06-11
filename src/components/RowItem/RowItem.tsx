@@ -1,5 +1,6 @@
 import type { Cell } from "../../types/cell";
 import CellItem from "../CellItem/CellItem";
+import styles from "./row-item.module.css";
 
 type RowItemProps = {
   row: Cell[];
@@ -9,7 +10,7 @@ type RowItemProps = {
 
 function RowItem(props: RowItemProps) {
   return (
-    <div>
+    <div className={styles["row-item"]}>
       {props.row.map((cell, cellIndex) => (
         <CellItem
           key={cellIndex}
