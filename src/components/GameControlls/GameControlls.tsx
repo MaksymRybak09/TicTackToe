@@ -1,4 +1,5 @@
 import MyButton from "../MyButton/MyButton";
+import MySelect from "../MySelect/MySelect";
 
 type GameBoardProps = {
   onNewGame: () => void;
@@ -12,7 +13,7 @@ function GameControlls(props: GameBoardProps) {
       <MyButton onClick={props.onNewGame}>New game</MyButton>
       <label>
         Grid size:
-        <select
+        <MySelect
           value={props.selectedGridSize}
           onChange={(e) => props.onGridSizeChange(Number(e.target.value))}
         >
@@ -21,7 +22,7 @@ function GameControlls(props: GameBoardProps) {
               {size} × {size}
             </option>
           ))}
-        </select>
+        </MySelect>
       </label>
     </div>
   );
