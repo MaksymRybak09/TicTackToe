@@ -1,11 +1,14 @@
 import { useEffect } from "react";
+import { formatTime } from "../../lib/helpers/formatTime";
 import type { Player } from "../../types/player";
+import type { Time } from "../../types/time";
 import styles from "./modal.module.css";
 
 type ModalProps = {
   show: boolean;
   winner: Player | "draw" | null;
   onClose: () => void;
+  time: Time;
 };
 
 function Modal(props: ModalProps) {
@@ -29,8 +32,12 @@ function Modal(props: ModalProps) {
 
   const message =
     props.winner === "draw"
-      ? "Draw, play again"
-      : `Player ${props.winner} won!`;
+      ? `Draw, total time is ${formatTime(
+          props.time.X + props.time.O,
+        )}, play again`
+      : `Player ${props.winner} won, with time ${formatTime(
+          props.time[props.winner || "X"],
+        )}!`;
 
   return (
     <div className={styles.fade}>
