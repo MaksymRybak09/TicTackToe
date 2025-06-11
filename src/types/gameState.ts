@@ -1,5 +1,6 @@
 import type { Cell } from "./cell";
 import type { Player } from "./player";
+import type { Time } from "./time";
 import type { Wins } from "./wins";
 
 export type GameState = {
@@ -11,4 +12,5 @@ export type GameState = {
   moveCount: number;
   gridSize: number;
   selectedGridSize: number;
+  time: Time;
 };
